@@ -9,7 +9,6 @@ module.exports = {
     // './src/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
-    
     extend: {
       width: {
         500: '500px',
@@ -25,20 +24,29 @@ module.exports = {
         medium: { min: '651px', max: '1023px' },
         large: { min: '1024px', max: '1279px' },
       },
+      colors: {
+        'primary-blue': '#DDDDDD',
+      },
     },
   },
   plugins: [],
-      fontSize: {
-      '2xl': ['1.5rem', {
+  fontSize: {
+    '2xl': [
+      '1.5rem',
+      {
         lineHeight: '2rem',
         letterSpacing: '-0.01em',
         fontWeight: '500',
-      }],
-      '3xl': ['5rem', {
+      },
+    ],
+    '3xl': [
+      '5rem',
+      {
         lineHeight: '4rem',
         letterSpacing: '-0.02em',
         fontWeight: '900',
-      }],
-    }
-  }
+      },
+    ],
+  },
+}
 
