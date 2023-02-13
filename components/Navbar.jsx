@@ -1,24 +1,28 @@
-import React from 'react'
+import { useState } from 'react'
 import Link from 'next/link'
 import {
   AiOutlineShoppingCart,
   AiOutlineUser,
   AiOutlineSearch,
-  
 } from 'react-icons/ai'
-
+import { HiMenu } from 'react-icons/hi'
 function Navbar() {
-   
+  // code for showing menu
+  const [menu, setMenu] = useState(false)
+  const showMenu = () => {
+    setMenu(!menu)
+    console.log('clicke me')
+  }
   return (
-    <div className='flex flex-row al m-[20px]  small:w-[300p] small:m-[10px] small:p-0   navbar-container '>
-      <h2 className='logo text-center ml-[80px]  '>
-        <Link href='/'>E MALL</Link>
+    <div className='flex  m-[20px]  small:w-[300p] small:m-[5px] small:p-0   navbar-container '>
+      <h2 className='logo text-3xl text-center   small:ml-0 small:text-3xl '>
+        <Link href='/'>APM ELECTROICS</Link>
       </h2>
       <div
-        className='flex    w-[900px] p-2 pl-10 text-
+        className='flex    w-[900px] h-[50px] p-2 pl-10 text-
         sm text-gray-900 border border-gray-900 rounded-lg
           dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500
-            '
+            small:hidden medium:hidden'
       >
         <input
           type='text'
@@ -34,7 +38,7 @@ function Navbar() {
         </button>
       </div>
 
-      <div>
+      <div className='flex gap-1'>
         {' '}
         <button type='button' className='cart-icon'>
           <AiOutlineUser />
@@ -59,9 +63,15 @@ function Navbar() {
           <span className='cart-item-qty '> 1</span>
           <AiOutlineShoppingCart />
         </button>
+        <button
+          type='button'
+          className='cart-icon small:block medium:flex hidden'
+        >
+          <HiMenu onclick={showMenu} />
+        </button>
       </div>
     </div>
   )
 }
-  
+
 export default Navbar

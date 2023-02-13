@@ -4,8 +4,7 @@ module.exports = {
     './app/**/*.{js,ts,jsx,tsx}',
     './pages/**/*.{js,ts,jsx,tsx}',
     './components/**/*.{js,ts,jsx,tsx}',
-    
- 
+    './sanity-ecommerce/**/*.{js,ts,jsx,tsx',
   ],
   theme: {
     extend: {
@@ -25,6 +24,8 @@ module.exports = {
       },
       colors: {
         'primary-blue': '#DDDDDD',
+       ' secondary': '#0081B4',
+      '  rash': '#2C3333',
       },
     },
   },
@@ -48,4 +49,3 @@ module.exports = {
     ],
   },
 }
-
