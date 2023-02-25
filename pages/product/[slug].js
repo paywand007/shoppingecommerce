@@ -6,36 +6,36 @@ import {
   AiOutlineStar,
 } from 'react-icons/ai' 
 import Product from '../../components/Product'
+import { useState } from 'react'
 
 const ProductDetails = ({ product, products }) => {
   const { image, name, details, price } = product;
-//  const reslt = Object.keys(products).map((item) => {
-//    <Product key={item._id}
-//    product={item}
-//    />
-//  })
+ const [index,setIndex]=useState(0)
   return (
     <div>
       <div className='product-detail-container'>
         <div>
           <div className='image-container'>
             <img
-              src={urlFor(image && image[0])}
+              src={urlFor(image && image[index])}
               alt=''
+              className='product-detail-image'
               width={600}
               height={600}
             />
           </div>
-          {/* <div className='small-images-container'>
-          {image?.map((item, i) => {
-            <img
-              src={urlFor(item)}
-              className=''
-              onMouseEnter={}
-            />
-          })}
-
-        </div> */}
+          <div className='small-images-container'>
+            {image?.map((item, i) => (
+              <img
+                key={i}
+                src={urlFor(item)}
+                className={
+                  i === index ? 'small-image selected-image' : 'small-image'
+                }
+                onMouseEnter={() => setIndex(i)}
+              />
+            ))}
+          </div>
         </div>
         <div className='product-detail-desc'>
           <h1 className='text-4xl font-bold'>{name}</h1>
