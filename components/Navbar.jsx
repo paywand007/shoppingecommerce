@@ -5,14 +5,22 @@ import {
   AiOutlineUser,
   AiOutlineSearch,
 } from 'react-icons/ai'
+import {Cart} from './'
 import { HiMenu } from 'react-icons/hi'
+import { useStateContext } from '../context/StateContext' 
+
 function Navbar() {
-  // code for showing menu
+  
+  const { showCart, setShowCart, totalQuantities } = useStateContext()
+   // code for showing menu
+
   const [menu, setMenu] = useState(false)
   const showMenu = () => {
     setMenu(!menu)
     console.log('clicke me')
+
   }
+
   return (
     <div className='flex  m-[20px]  small:w-[300p] small:m-[5px] small:p-0   navbar-container '>
       <h2 className='logo text-3xl text-center   small:ml-0 small:text-3xl '>
@@ -59,10 +67,15 @@ function Navbar() {
             />
           </svg>
         </button>
-        <button type='button' className='cart-icon'>
-          <span className='cart-item-qty '> 1</span>
+        <button
+          type='button'
+          className='cart-icon'
+          onClick={() => setShowCart(true)}
+        >
+          <span className='cart-item-qty '> {totalQuantities}</span>
           <AiOutlineShoppingCart />
         </button>
+        {showCart && <Cart />}
         <button
           type='button'
           className='cart-icon small:block medium:flex hidden'

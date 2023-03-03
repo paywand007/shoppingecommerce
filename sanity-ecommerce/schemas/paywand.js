@@ -1,18 +1,17 @@
 export default {
-  name: 'mobile',
-  title: 'mobile',
+  name: 'paywand',
+  title: 'Paywand',
   type: 'document',
   fields: [
     {
       name: 'image',
-      title: 'image',
+      title: 'Image',
       type: 'array',
       of: [{type: 'image'}],
       options: {
         hotspot: true,
       },
     },
-  
     {
       name: 'name',
       title: 'Name',

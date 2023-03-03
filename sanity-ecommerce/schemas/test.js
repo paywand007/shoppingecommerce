@@ -1,6 +1,6 @@
 export default {
-  name: 'Second Hand',
-  title: 'Second hand',
+  name: 'test',
+  title: 'test',
   type: 'document',
   fields: [
     {

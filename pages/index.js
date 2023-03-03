@@ -3,11 +3,12 @@ import React from 'react'
 import { client } from '../lib/client'
 import { Product, FooterBanner, HeroBanner } from '../components'
 
-const Home = ({ products, bannerData }) => (
+const Home = ({ products, bannerData  }) => (
   <div>
     <HeroBanner heroBanner={bannerData.length && bannerData[0]} />
     {console.log(bannerData)}
-    {console.log(products)}
+    {/* {console.log(products)} */}
+  
     <div className='products-heading'>
       <h2>Best Seller Products</h2>
       <p>speaker There are many variations passages</p>
@@ -20,6 +21,7 @@ const Home = ({ products, bannerData }) => (
     </div>
 
     <FooterBanner footerBanner={bannerData && bannerData[0]} />
+
   </div>
 )
 
@@ -31,7 +33,7 @@ export const getServerSideProps = async () => {
   const bannerData = await client.fetch(bannerQuery)
 
   return {
-    props: { products, bannerData },
+    props: { products, bannerData  },
   }
 }
 

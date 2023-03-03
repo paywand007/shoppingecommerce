@@ -59,7 +59,7 @@ function ContactUs() {
           ref={form}
           onSubmit={handleSubmit(sendEmail)}
         >
-          <div className='flex flex-col  w-full gap-3'>
+          <div className='  w-full gap-3'>
             <div className='flex  w-full justify-center  gap-2 small:flex-col medium:flex-col'>
               <label className=' w-1/2 flex flex-col' htmlFor='name'>
                 {' '}

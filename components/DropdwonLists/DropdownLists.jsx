@@ -14,15 +14,15 @@ function DropdownLists( ) {
   return (
     <div className='border w-[900] rounded flex justify-center cursor-pointer  m-3  text-lg text-black bg-primary-blue  Dropdowns small:flex-col medium:flex-col small:w-full medium:w-full'>
       <div className=' m-3 rounded hover:rounded-lg  pr-2 border-r-4'>
-        PHONE | TABLETS{' '}
-        {state ? (
+        <Link href={`/infopage/Phone`}> PHONE | TABLETS</Link>{' '}
+        {/* {state ? (
           <ul onMouseEnter={showDropdown} className=' text-center'>
             <li>value 1</li>
             <li>value 2</li>
             <li>value 3</li>
             <li>value 4</li>
           </ul>
-        ) : null}
+        ) : null} */}
       </div>
       <div
         className=' m-3 rounded hover:rounded-lg  pr-2 border-r-4'
@@ -31,14 +31,14 @@ function DropdownLists( ) {
       >
         {' '}
         COMPUTERS | HARDWARES
-        {state ? (
+        {/* {state ? (
           <ul onMouseEnter={showDropdown} className=' text-center'>
             <li>value 1</li>
             <li>value 2</li>
             <li>value 3</li>
             <li>value 4</li>
           </ul>
-        ) : null}
+        ) : null} */}
       </div>
 
       <div
@@ -48,14 +48,14 @@ function DropdownLists( ) {
       >
         {' '}
         HEADSETS | AIRPODS
-        {state ? (
+        {/* {state ? (
           <ul className=' text-center' onMouseEnter={showDropdown}>
             <li>value 1</li>
             <li>value 2</li>
             <li>value 3</li>
             <li>value 4</li>
           </ul>
-        ) : null}
+        ) : null} */}
       </div>
       <div
         className='m-3 rounded hover:rounded-lg pr-2 border-r-4'
@@ -63,14 +63,14 @@ function DropdownLists( ) {
         onMouseLeave={hideDropdown}
       >
         GAMING
-        {state ? (
+        {/* {state ? (
           <ul className=' text-center' onMouseEnter={showDropdown}>
             <li>value 1</li>
             <li>value 2</li>
             <li>value 3</li>
             <li>value 4</li>
           </ul>
-        ) : null}
+        ) : null} */}
       </div>
       <div
         className='m-3 rounded hover:rounded-lg  pr-2 border-r-4'
@@ -78,14 +78,14 @@ function DropdownLists( ) {
         onMouseLeave={hideDropdown}
       >
         PHOTOGRAPHY
-        {state ? (
+        {/* {state ? (
           <ul className=' text-center  ' onMouseEnter={showDropdown}>
             <li>value 1</li>
             <li>value 2</li>
             <li>value 3</li>
             <li>value 4</li>
           </ul>
-        ) : null}
+        ) : null} */}
       </div>
       <div
         className='m-3 rounded hover:rounded-lg pr-2 border-r-4'
@@ -93,14 +93,14 @@ function DropdownLists( ) {
         onMouseLeave={hideDropdown}
       >
         TV | STANDS
-        {state ? (
+        {/* {state ? (
           <ul className=' text-center' onMouseEnter={showDropdown}>
             <li>value 1</li>
             <li>value 2</li>
             <li>value 3</li>
             <li>value 4</li>
           </ul>
-        ) : null}
+        ) : null} */}
       </div>
 
       <div
@@ -109,14 +109,14 @@ function DropdownLists( ) {
         onMouseLeave={hideDropdown}
       >
         SECONDE HANDE
-        {state ? (
+        {/* {state ? (
           <ul className=' text-center' onMouseEnter={showDropdown}>
             <li>value 1</li>
             <li>value 2</li>
             <li>value 3</li>
             <li>value 4</li>
           </ul>
-        ) : null}
+        ) : null} */}
       </div>
       <div className='m-3 rounded hover:rounded-lg  pr-2 border-r-4'>
         ABOUT US

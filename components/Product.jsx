@@ -1,7 +1,9 @@
 import React from 'react'
 import Link from 'next/link'
 import { urlFor } from '../lib/client'
-function Product({product:{image,name,slug,price}}) {
+function Product({ product: { image, name, slug, price } }) {
+    console.log(image)
+
   return (
     <div>
       <Link href={`/product/${slug.current}`}>

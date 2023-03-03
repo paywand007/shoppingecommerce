@@ -1,27 +1,28 @@
-import { client, urlFor } from '../../lib/client'
+import React, { useState } from 'react'
 import {
   AiOutlineMinus,
   AiOutlinePlus,
   AiFillStar,
   AiOutlineStar,
-} from 'react-icons/ai' 
-import Product from '../../components/Product'
-import { useState } from 'react'
+} from 'react-icons/ai'
+
+import { client, urlFor } from '../../lib/client'
+import { Product } from '../../components'
+import { useStateContext } from '../../context/StateContext' 
 
 const ProductDetails = ({ product, products }) => {
-  const { image, name, details, price } = product;
- const [index,setIndex]=useState(0)
+  const { image, name, details, price } = product
+
+   const { decQty, incQty, qty,onAdd  } = useStateContext()
+ const [index, setIndex] = useState(0)
   return (
     <div>
       <div className='product-detail-container'>
         <div>
-          <div className='image-container'>
+          <div className='image-container m-5'>
             <img
               src={urlFor(image && image[index])}
-              alt=''
               className='product-detail-image'
-              width={600}
-              height={600}
             />
           </div>
           <div className='small-images-container'>
@@ -37,35 +38,41 @@ const ProductDetails = ({ product, products }) => {
             ))}
           </div>
         </div>
+
         <div className='product-detail-desc'>
-          <h1 className='text-4xl font-bold'>{name}</h1>
+          <h1>{name}</h1>
           <div className='reviews'>
-            <AiFillStar />
-            <AiFillStar />
-            <AiFillStar />
-            <AiFillStar />
-            <AiOutlineStar />
-            <p>(92)</p>
+            <div>
+              <AiFillStar />
+              <AiFillStar />
+              <AiFillStar />
+              <AiFillStar />
+              <AiOutlineStar />
+            </div>
+            <p>(20)</p>
           </div>
-          <h4>Details</h4>
+          <h4>Details: </h4>
           <p>{details}</p>
           <p className='price'>${price}</p>
           <div className='quantity'>
             <h3>Quantity:</h3>
             <p className='quantity-desc'>
-              <span className='minus'>
+              <span className='minus' onClick={decQty}>
                 <AiOutlineMinus />
               </span>
-              <span className='num'>0</span>
-              <span className='plus'>
+              <span className='num'>{qty}</span>
+              <span className='plus' onClick={incQty}>
                 <AiOutlinePlus />
               </span>
             </p>
           </div>
           <div className='buttons'>
-            {' '}
-            <button type='button' className='add-to-cart '>
-              Add To Card
+            <button
+              type='button'
+              className='add-to-cart'
+             onClick={() => onAdd(product, qty)}
+            >
+              Add to Cart
             </button>
             <button type='button' className='buy-now'>
               Buy Now
@@ -73,6 +80,7 @@ const ProductDetails = ({ product, products }) => {
           </div>
         </div>
       </div>
+
       <div className='maylike-products-wrapper'>
         <h2>You may also like</h2>
         <div className='marquee'>
@@ -86,7 +94,7 @@ const ProductDetails = ({ product, products }) => {
     </div>
   )
 }
-//Don't return all products just return current product
+
 export const getStaticPaths = async () => {
   const query = `*[_type == "product"] {
     slug {
@@ -116,7 +124,7 @@ export const getStaticProps = async ({ params: { slug } }) => {
   const product = await client.fetch(query)
   const products = await client.fetch(productsQuery)
 
-  console.log(product)
+ 
 
   return {
     props: { products, product },
