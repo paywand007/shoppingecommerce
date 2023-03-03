@@ -30,7 +30,7 @@ function DropdownLists( ) {
         onMouseLeave={hideDropdown}
       >
         {' '}
-        COMPUTERS | HARDWARES
+        <Link href={`/infopage/Computer `}> COMPUTERS | HARDWARES</Link>
         {/* {state ? (
           <ul onMouseEnter={showDropdown} className=' text-center'>
             <li>value 1</li>
@@ -47,7 +47,7 @@ function DropdownLists( ) {
         onMouseLeave={hideDropdown}
       >
         {' '}
-        HEADSETS | AIRPODS
+        <Link href={`/infopage/HeadSet `}>HEADSETS | AIRPODS</Link>
         {/* {state ? (
           <ul className=' text-center' onMouseEnter={showDropdown}>
             <li>value 1</li>
@@ -77,7 +77,7 @@ function DropdownLists( ) {
         onMouseEnter={showDropdown}
         onMouseLeave={hideDropdown}
       >
-        PHOTOGRAPHY
+        <Link href={`/infopage/Photograph `}>PHOTOGRAPHY</Link>
         {/* {state ? (
           <ul className=' text-center  ' onMouseEnter={showDropdown}>
             <li>value 1</li>
@@ -92,7 +92,7 @@ function DropdownLists( ) {
         onMouseEnter={showDropdown}
         onMouseLeave={hideDropdown}
       >
-        TV | STANDS
+        <Link href={`/infopage/TvStands `}> TV | STANDS</Link>
         {/* {state ? (
           <ul className=' text-center' onMouseEnter={showDropdown}>
             <li>value 1</li>
