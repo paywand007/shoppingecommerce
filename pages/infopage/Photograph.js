@@ -9,7 +9,7 @@ function Photograph({ PhotoData }) {
         PhotoData.map((data) => {
           console.log(data.image)
           return (
-            <div className='product-card'>
+            <div className='product-card  w-[300px] h-[350px] items-center m-3 border-4'>
               <img
                 src={urlFor(data.image && data.image[0])}
                 width={250}

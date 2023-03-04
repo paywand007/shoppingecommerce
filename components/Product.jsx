@@ -7,7 +7,7 @@ function Product({ product: { image, name, slug, price } }) {
   return (
     <div>
       <Link href={`/product/${slug.current}`}>
-        <div className='product-card'>
+        <div className='product-card w-[300px] h-[350px] items-center m-3 border-4 rounded-lg'>
           <img
             src={urlFor(image && image[0])}
             width={250}

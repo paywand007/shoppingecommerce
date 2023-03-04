@@ -13,8 +13,11 @@ function DropdownLists( ) {
  
   return (
     <div className='border w-[900] rounded flex justify-center cursor-pointer  m-3  text-lg text-black bg-primary-blue  Dropdowns small:flex-col medium:flex-col small:w-full medium:w-full'>
-      <div className=' m-3 rounded hover:rounded-lg  pr-2 border-r-4'>
-        <Link href={`/infopage/Phone`}> PHONE | TABLETS</Link>{' '}
+      <div className=' m-3 rounded hover:text-sky-700 active:text-sky-700   pr-2 border-r-4'>
+        <Link   href={`/infopage/Phone`}  >
+         
+          PHONE | TABLETS
+        </Link> 
         {/* {state ? (
           <ul onMouseEnter={showDropdown} className=' text-center'>
             <li>value 1</li>
@@ -25,7 +28,7 @@ function DropdownLists( ) {
         ) : null} */}
       </div>
       <div
-        className=' m-3 rounded hover:rounded-lg  pr-2 border-r-4'
+        className=' m-3   hover:hover:text-sky-700 rounded-lg  pr-2 border-r-4'
         onMouseEnter={showDropdown}
         onMouseLeave={hideDropdown}
       >
@@ -42,7 +45,7 @@ function DropdownLists( ) {
       </div>
 
       <div
-        className='m-3 rounded hover:rounded-lg pr-2 border-r-4'
+        className='m-3   hover:hover:text-sky-700 rounded-lg pr-2 border-r-4'
         onMouseEnter={showDropdown}
         onMouseLeave={hideDropdown}
       >
@@ -58,11 +61,11 @@ function DropdownLists( ) {
         ) : null} */}
       </div>
       <div
-        className='m-3 rounded hover:rounded-lg pr-2 border-r-4'
+        className='m-3  hover:hover:text-sky-700 rounded-lg pr-2 border-r-4'
         onMouseEnter={showDropdown}
         onMouseLeave={hideDropdown}
       >
-        GAMING
+        <Link href={`/infopage/Gaming `}>GAMING</Link>
         {/* {state ? (
           <ul className=' text-center' onMouseEnter={showDropdown}>
             <li>value 1</li>
@@ -73,7 +76,7 @@ function DropdownLists( ) {
         ) : null} */}
       </div>
       <div
-        className='m-3 rounded hover:rounded-lg  pr-2 border-r-4'
+        className='m-3   hover:hover:text-sky-700 rounded-lg  pr-2 border-r-4'
         onMouseEnter={showDropdown}
         onMouseLeave={hideDropdown}
       >
@@ -88,7 +91,7 @@ function DropdownLists( ) {
         ) : null} */}
       </div>
       <div
-        className='m-3 rounded hover:rounded-lg pr-2 border-r-4'
+        className='m-3   hover:hover:text-sky-700 rounded-lg pr-2 border-r-4'
         onMouseEnter={showDropdown}
         onMouseLeave={hideDropdown}
       >
@@ -104,11 +107,11 @@ function DropdownLists( ) {
       </div>
 
       <div
-        className='m-3 rounded hover:rounded-lg  pr-2 border-r-4'
+        className='m-3  hover:hover:text-sky-700 rounded-lg  pr-2 border-r-4'
         onMouseEnter={showDropdown}
         onMouseLeave={hideDropdown}
       >
-        SECONDE HANDE
+        <Link href={`/infopage/SecondHand `}> SECONDE HAND</Link>
         {/* {state ? (
           <ul className=' text-center' onMouseEnter={showDropdown}>
             <li>value 1</li>
@@ -118,10 +121,10 @@ function DropdownLists( ) {
           </ul>
         ) : null} */}
       </div>
-      <div className='m-3 rounded hover:rounded-lg  pr-2 border-r-4'>
+      <div className='m-3   hover:hover:text-sky-700 rounded-lg  pr-2 border-r-4'>
         ABOUT US
       </div>
-      <div className='m-3 rounded hover:rounded-lg'>
+      <div className='m-3   hover:hover:text-sky-700 rounded-lg'>
         <Link href={`/infopage/ContactUs`}>CONTACT US</Link>{' '}
       </div>
     </div>

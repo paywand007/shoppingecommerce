@@ -26,7 +26,7 @@ function Navbar() {
       <h2 className='logo text-3xl text-center   small:ml-0 small:text-3xl '>
         <Link href='/'>APM ELECTROICS</Link>
       </h2>
-      <div
+      {/* <div
         className='flex    w-[900px] h-[50px] p-2 pl-10 text-
         sm text-gray-900 border border-gray-900 rounded-lg
           dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500
@@ -44,7 +44,7 @@ function Navbar() {
         <button type='button' className='cart-icon'>
           <AiOutlineSearch />
         </button>
-      </div>
+      </div> */}
 
       <div className='flex gap-1'>
         {' '}
