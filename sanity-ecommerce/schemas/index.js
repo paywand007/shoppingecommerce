@@ -9,7 +9,8 @@ import tvStands from './tvStands'
  import headsetAirbuds from './headsetAirbuds'
 import photograph from './photograph'
 import paywand from './paywand'
- import akam from './akam'
+import akam from './akam'
+ import secondhand from './secondhand'
 export const schemaTypes = [
   product,
   banner,
@@ -23,5 +24,6 @@ export const schemaTypes = [
     paywand,
  akam,
   computersHardwares,
+  secondhand
 ]
 

@@ -15,6 +15,7 @@
         "@sanity/client": "^3.2.0",
         "@sanity/image-url": "^1.0.1",
         "@stripe/stripe-js": "^1.25.0",
+        "canary": "^0.1.5",
         "canvas-confetti": "^1.5.1",
         "emailjs": "^4.0.1",
         "firebase": "^9.17.1",

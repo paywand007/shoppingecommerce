@@ -8,9 +8,9 @@ import {
 
 import { client, urlFor } from '../../lib/client'
 import { Product } from '../../components'
-import { useStateContext } from '../../context/StateContext' 
+import { useStateContext } from '../../context/StateContext'
 
-const ProductDetails = ({ product, products}) => {
+const HeadDetails = ({ product, products }) => {
   const { image, name, details, price } = product
 
   const { decQty, incQty, qty, onAdd } = useStateContext()
@@ -94,43 +94,38 @@ const ProductDetails = ({ product, products}) => {
     </div>
   )
 }
-
 export const getStaticPaths = async () => {
-  const query = `*[_type == "product"] {
+  const query = `*[_type == "Headset"] {
     slug {
       current
     }
   }
   `
+
   const products = await client.fetch(query)
+
   const paths = products.map((product) => ({
     params: {
       slug: product.slug.current,
     },
   }))
 
- 
- 
   return {
     paths,
- 
     fallback: 'blocking',
   }
 }
 
 export const getStaticProps = async ({ params: { slug } }) => {
-  const query = `*[_type == "product" && slug.current == '${slug}'][0]`
-  const productsQuery = '*[_type == "product"]'
+  const query = `*[_type == "Headset" && slug.current == '${slug}'][0]`
+  const productsQuery = '*[_type == "Headset"]'
 
   const product = await client.fetch(query)
   const products = await client.fetch(productsQuery)
-
-   
 
   return {
     props: { products, product },
   }
 }
 
-
-export default ProductDetails
+export default HeadDetails
