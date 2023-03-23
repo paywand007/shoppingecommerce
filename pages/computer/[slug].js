@@ -11,9 +11,8 @@ import { Product } from '../../components'
 import { useStateContext } from '../../context/StateContext'
 import Link from 'next/link'
 
-
-const PhoneDetails = ({ product, products }) => {
-   const { image, name, details, price } = product
+const ComDetails = ({ product, products }) => {
+  const { image, name, details, price } = product
 
   const { decQty, incQty, qty, onAdd } = useStateContext()
   const [index, setIndex] = useState(0)
@@ -97,7 +96,7 @@ const PhoneDetails = ({ product, products }) => {
   )
 }
 export const getStaticPaths = async () => {
-  const query = `*[_type == "paywand"] {
+  const query = `*[_type == "computer"] {
     slug {
       current
     }
@@ -117,11 +116,10 @@ export const getStaticPaths = async () => {
     fallback: 'blocking',
   }
 }
- 
 
 export const getStaticProps = async ({ params: { slug } }) => {
-  const query = `*[_type == "paywand" && slug.current == '${slug}'][0]`
-  const productsQuery = '*[_type == "paywand"]'
+  const query = `*[_type == "computer" && slug.current == '${slug}'][0]`
+  const productsQuery = '*[_type == "computer"]'
 
   const product = await client.fetch(query)
   const products = await client.fetch(productsQuery)
@@ -131,4 +129,4 @@ export const getStaticProps = async ({ params: { slug } }) => {
   }
 }
 
-export default PhoneDetails
+export default ComDetails

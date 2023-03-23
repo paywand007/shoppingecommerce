@@ -121,9 +121,9 @@ function DropdownLists( ) {
           </ul>
         ) : null} */}
       </div>
-      <div className='m-3   hover:hover:text-sky-700 rounded-lg  pr-2 border-r-4'>
+      {/* <div className='m-3   hover:hover:text-sky-700 rounded-lg  pr-2 border-r-4'>
         ABOUT US
-      </div>
+      </div> */}
       <div className='m-3   hover:hover:text-sky-700 rounded-lg'>
         <Link href={`/infopage/ContactUs`}>CONTACT US</Link>{' '}
       </div>

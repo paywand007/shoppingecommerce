@@ -9,9 +9,10 @@ import {
 import { client, urlFor } from '../../lib/client'
 import { Product } from '../../components'
 import { useStateContext } from '../../context/StateContext' 
+import Link from 'next/link'
 
 const ProductDetails = ({ product, products}) => {
-  const { image, name, details, price } = product
+  const { image, name, details, price,count } = product
 
   const { decQty, incQty, qty, onAdd } = useStateContext()
   const [index, setIndex] = useState(0)
@@ -49,7 +50,7 @@ const ProductDetails = ({ product, products}) => {
               <AiFillStar />
               <AiOutlineStar />
             </div>
-            <p>(20)</p>
+            <p>{count}</p>
           </div>
           <h4>Details: </h4>
           <p>{details}</p>
@@ -75,7 +76,7 @@ const ProductDetails = ({ product, products}) => {
               Add to Cart
             </button>
             <button type='button' className='buy-now'>
-              Buy Now
+              <Link href={'/Payment'}>Buy Now</Link>
             </button>
           </div>
         </div>
@@ -96,7 +97,7 @@ const ProductDetails = ({ product, products}) => {
 }
 
 export const getStaticPaths = async () => {
-  const query = `*[_type == "product"] {
+  const query = `*[_type == "newtest"] {
     slug {
       current
     }
@@ -119,8 +120,8 @@ export const getStaticPaths = async () => {
 }
 
 export const getStaticProps = async ({ params: { slug } }) => {
-  const query = `*[_type == "product" && slug.current == '${slug}'][0]`
-  const productsQuery = '*[_type == "product"]'
+  const query = `*[_type == "newtest" && slug.current == '${slug}'][0]`
+  const productsQuery = '*[_type == "newtest"]'
 
   const product = await client.fetch(query)
   const products = await client.fetch(productsQuery)

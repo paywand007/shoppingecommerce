@@ -1,116 +1,135 @@
+import {useState,useEffect} from 'react'
 import { useForm } from 'react-hook-form'
-
 import { yupResolver } from '@hookform/resolvers/yup'
-
-import React, { useRef } from 'react'
-
-import emailjs from '@emailjs/browser'
-
-import * as yup from 'yup'
-
-function ContactUs() {
-  const schema = yup.object().shape({
-    firstName: yup.string().required('Your Full Name is Required!'),
-    lastName: yup.string().required('Your Last Name is Required!'),
-    email: yup.string().email().required('Your Email is Required!'),
-    message: yup.string().required('Your Message is Required!'),
-  })
-
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
-    resolver: yupResolver(schema),
-  })
-
-  const form = useRef()
-
-  const sendEmail = () => {
-    console.log('hey')
-    //  e.preventDefault();
-
-    emailjs
-      .sendForm(
-        'service_21dgncx',
-        'template_rvkuj9b',
-        form.current,
-        'THcaIEhH6x_Hp_92h'
-      )
-      .then(
-        (result) => {
-          console.log(result.text)
-        },
-        (error) => {
-          console.log(error.text)
-        }
-      )
-    form.current.reset()
-  }
-
+import * as Yup from 'yup'
+import {auth ,googleProvider} from './firbase/firebase'
+import {   signInWithEmailAndPassword,signInWithPopup } from 'firebase/auth'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
+import { useAuthState } from "react-firebase-hooks/auth";
+import { AiFillGoogleCircle } from "react-icons/ai";
+export default function SinIn() {
+ 
+   
+  const { register, handleSubmit, reset, formState } = useForm()
+  const { errors } = formState
+  const router = useRouter()
+  const [user, loading] = useAuthState(auth);
+  const signIn = (e) => {
+    e.preventDefault();
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        console.log(userCredential);
+        router.push('/infopage/AuthDetails')
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+  const signInWithGoogle = (e) => {
+    e.preventDefault();
+    signInWithPopup(auth,googleProvider)
+      .then((userCredential) => {
+        console.log(userCredential);
+        router.push('/infopage/AuthDetails')
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+  console.log(auth)
+   const [email,setEmail]=useState('')
+   const [password,setPassword]=useState('')
+    
+   console.log(` Auth user ${auth}`)
+   useEffect(() => {
+    if (user) {
+      router.push('/infopage/AuthDetails')
+    } else {
+      console.log("login");
+    }
+  }, [user]);
   return (
-    <div className='flex  justify-center my-[100px] gap-3 small:flex-col '>
-      <div className=' w-full flex-1  justify-center   small:m-5'>
-        <h1 className='text-4xl subpixel-antialiased text-center text-slate-600 font-semibold'>
-         Log In
-        </h1>
-        <form
-          className='flex w-full flex-col gap-3 mt-10'
-          ref={form}
-          onSubmit={handleSubmit(sendEmail)}
-        >
-          <div className='  w-full gap-3'>
-            <div className='flex  w-full justify-center  gap-2 small:flex-col medium:flex-col'>
-              <label className=' w-1/2 flex flex-col' htmlFor='name'>
-                {' '}
-                <p className='text-left text-lg subpixel-antialiased text-slate-600 font-semibold'></p>
-                <input
-                  className='px-6 py-2   border-2 border-gray-900'
-                  type='text'
-                  placeholder='Name'
-                  name='firstName'
-                  {...register('firstName')}
-                  id='n44ame'
-                />
-                <p className='text-sm text-red-500 text-left'>
-                  {errors?.firstName?.message}
-                </p>
-              </label>
+    
+      <div className='flex-col justify-center'>
+      {   (<form className='flex flex-col justify-center items-center '   >
+      <div className="flex-col gap-5 items-center justify-center  ">
+          {/* <label className='font-bold text-xl'>Email</label> */}
+          <h2 className='text-2xl font-bold text-center m-5'>Sin In Account</h2>
+          <input
+          onChange={(e)=>setEmail(e.target.value)}
+            name="email"
+            type="email"
              
-            </div>
-          </div>
-          <div className='w-full small:mx-0 medium:mx-0'>
-            {' '}
-            <label htmlFor='email' className='flex justify-center flex-col '>
-              <p className='text-left text-lg subpixel-antialiased text-slate-600 font-semibold'></p>
-              <input
-                className='px-3 py-2   border-2 border-gray-900'
-                name='email'
-                placeholder='example@email.com'
-                type='text'
-                {...register('email')}
-                id='name1'
-              />
-              <p className='text-sm text-red-500 text-left'>
-                {errors?.email?.message}
-              </p>
-            </label>
-          </div>
-          
+            className={`form-control ${errors.email ? 'is-invalid' : ''} m-5 border-solid border-2 rounded w-[400px]  py-[8px] text-center text-black `}
+          placeholder='Enter Email'
+          />
+          <div className="  invalid-feedback text-red-600">{errors.email?.message}</div>
+        </div>
+        <div className="form-group">
+          {/* <label className='font-bold text-xl'>Password</label> */}
+          <input
+          onChange={(e)=>setPassword(e.target.value)}
 
-          <div className='flex justify-start'>
-            <button
-              type='submit'
-              className='bg-sky-900  text-white rounded-md px-5 py-3'
-            >
-              Send
-            </button>
-          </div>
-        </form>
+name="password"
+            type="password"
+     
+            className={`form-control ${errors.password ? 'is-invalid' : ''} m-5 border-solid border-2 rounded w-[400px] py-[8px] text-center   text-black`}
+            placeholder=' Enter Password'
+          />
+          <div className="invalid-feedback text-red-600">{errors.password?.message}</div>
+        </div>
+
+        <div className="mt-3 ">
+          <button type="submit" className="bg-cyan-900 text-white rounded  px-2 py-1 m-2" onClick={signIn}>
+            Log In  
+          </button>
+         
+        </div>
+        <div className="mt-3 p-2 rounded bg-orange-700 text-white">
+           
+          <button type='submit' className='flex gap-3' onClick={signInWithGoogle}>
+          Log In with google account  <AiFillGoogleCircle className='w-5'/>
+          </button>
+        </div>
+       
+      </form>)}
+      <div className='flex justify-center' > 
+      
+         <p  className="">
+         Don't Have Account ? <Link href={`/infopage/Auth`}>Sin Up</Link>
+          </p> </div>
+    
       </div>
-
-    </div>
   )
 }
 
-export default ContactUs
+// import React from 'react'
+
+// function SinIn() {
+//   return (
+//     <div>
+// <form action="" className='flex-col gap-5 items-center justify-center'>
+// <div className=' flex w-full justify-center gap-4 mb-5  '>
+//     <label className=' ' htmlFor="name"> Your name </label>
+// <input type="text"  className='  bg-sky-400'/>
+// </div>
+// <div className=' flex w-full justify-center gap-4 mb-05'>
+//     <label className=' ' htmlFor="name"> Your name </label>
+// <input type="text"  className='  bg-sky-300'/>
+// </div>
+// <div className=' flex col-auto w-full justify-center gap-4 '>
+// <button type = 'submit'
+//         className = 'bg-sky-900  text-white rounded-md px-5 py-3' >
+//        Sin In </button>
+// <button type = 'submit'
+//         className = 'bg-sky-900  text-white rounded-md px-1 py-0.5' >
+//         Sin Up </button>
+// </div>
+// </form>
+
+//     </div>
+//   )
+// }
+
+// export default SinIn

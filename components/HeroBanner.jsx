@@ -14,12 +14,14 @@ function HeroBanner({ heroBanner }) {
           className='hero-banner-image'
         />
         <div>
-          <Link href={`/product/${heroBanner.product}`}>
+          <Link
+            href={`/computer/cooler-master-masterliquid-ml360l-argb-v2-white-edition`}
+          >
             <button type='button'>{heroBanner.buttonText}</button>
           </Link>
           <div className='desc'>
             <h5>DESCRPTION</h5>
-                      <p>{ heroBanner.desc}</p>
+            <p>{heroBanner.desc}</p>
           </div>
         </div>
       </div>

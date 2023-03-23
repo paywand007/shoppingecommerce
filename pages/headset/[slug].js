@@ -9,6 +9,8 @@ import {
 import { client, urlFor } from '../../lib/client'
 import { Product } from '../../components'
 import { useStateContext } from '../../context/StateContext'
+import Link from 'next/link'
+
 
 const HeadDetails = ({ product, products }) => {
   const { image, name, details, price } = product
@@ -75,7 +77,7 @@ const HeadDetails = ({ product, products }) => {
               Add to Cart
             </button>
             <button type='button' className='buy-now'>
-              Buy Now
+              <Link href={'/Payment'}>Buy Now</Link>
             </button>
           </div>
         </div>

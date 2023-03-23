@@ -1,33 +1,28 @@
 import React, { useState } from 'react'
 import { client, urlFor } from '../../lib/client'
+import ComProduct from '../../components/ComProduct'
+
 function Computer({ comData }) {
-  // console.log(mobileData[0].image[0].asset._ref)
-
+  const [searchTerm,setSearchTerm]=useState('') 
+  console.log(comData)
   return (
-    <div className='products-container '>
-      {comData &&
-        comData.map((data) => {
-          console.log(data.image)
-          return (
-            <div className='product-card  w-[300px] h-[350px] items-center m-3 border-4'>
-              <img
-                src={urlFor(data.image && data.image[0])}
-                width={250}
-                height={250}
-                className='product-image'
-              />
-              <p className='product-name'>{data.name}</p>
-              <p className='product-name'>${data.price}</p>
-            </div>
-          )
-        })}
+    <div className=' text-center'>
+     <input type='text'
+     onChange={(e)=>{setSearchTerm(e.target.value)}}
+     className=' bg-gray-200 text-center text-black py-2 px-[40px] rounded mt-2' placeholder='Search here '/>
+      <div className='products-container   '>
+         {comData.filter((val)=>{
+          if(searchTerm==''){
+            return val
+          }
+          else if (val.name.toLowerCase().includes(searchTerm.toLocaleLowerCase())){
+            return val
+          }
+         }).map((comData, index) => (
+          <ComProduct key={index} comData={comData} />
+        ))}
+      </div>
     </div>
-
-    // <div className='products-container'>
-    //   {mobileData?.map((mobileData) => (
-    //     <PhoneProduct key={mobileData._id} mobileData={mobileData} />
-    //   ))}
-    // </div>
   )
 }
 export const getServerSideProps = async () => {
