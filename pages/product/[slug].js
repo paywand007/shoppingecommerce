@@ -9,15 +9,11 @@ import {
 import { client, urlFor } from '../../lib/client'
 import { Product } from '../../components'
 import { useStateContext } from '../../context/StateContext' 
-import useTranslation from 'next-translate/useTranslation'
+import Link from 'next/link'
 
-const ProductDetails = ({ product : { image , name , details , price  } , products}) => {
+const ProductDetails = ({ product, products}) => {
+  const { image, name, details, price,count } = product
 
-  
-
- 
-
-  const { t }= useTranslation();
   const { decQty, incQty, qty, onAdd } = useStateContext()
   const [index, setIndex] = useState(0)
   return (
@@ -54,13 +50,13 @@ const ProductDetails = ({ product : { image , name , details , price  } , produc
               <AiFillStar />
               <AiOutlineStar />
             </div>
-            <p>(20)</p>
+            <p>{count}</p>
           </div>
           <h4>Details: </h4>
           <p>{details}</p>
           <p className='price'>${price}</p>
           <div className='quantity'>
-            <h3>{t("common:qyntity")}:</h3>
+            <h3>Quantity:</h3>
             <p className='quantity-desc'>
               <span className='minus' onClick={decQty}>
                 <AiOutlineMinus />
@@ -77,21 +73,21 @@ const ProductDetails = ({ product : { image , name , details , price  } , produc
               className='add-to-cart'
               onClick={() => onAdd(product, qty)}
             >
-           {t("common:addtocart")}
+              Add to Cart
             </button>
             <button type='button' className='buy-now'>
-            {t("common:buyNow")}
+              <Link href={'/Payment'}>Buy Now</Link>
             </button>
           </div>
         </div>
       </div>
 
       <div className='maylike-products-wrapper'>
-        <h2>{t('common:youMayLike')}</h2> 
+        <h2>You may also like</h2>
         <div className='marquee'>
           <div className='maylike-products-container track'>
-            {products.map((item,i) => (
-              <Product key={i} product={item} />
+            {products.map((item) => (
+              <Product key={item._id} product={item} />
             ))}
           </div>
         </div>
@@ -99,8 +95,9 @@ const ProductDetails = ({ product : { image , name , details , price  } , produc
     </div>
   )
 }
+
 export const getStaticPaths = async () => {
-  const query = `*[_type == "akam"] {
+  const query = `*[_type == "product"] {
     slug {
       current
     }
@@ -131,8 +128,11 @@ export const getStaticProps = async ({ params: { slug } }) => {
 
    
 
+  console.log("Joseph productdetail : ", products, ' ' , product)
   return {
     props: { products, product },
   }
 }
+
+
 export default ProductDetails

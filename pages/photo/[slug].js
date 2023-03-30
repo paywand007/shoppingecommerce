@@ -10,13 +10,11 @@ import { client, urlFor } from '../../lib/client'
 import { Product } from '../../components'
 import { useStateContext } from '../../context/StateContext'
 import Link from 'next/link'
-import useTranslation from 'next-translate/useTranslation'
 
 
 const PhoneDetails = ({ product, products }) => {
   const { image, name, details, price } = product
 
-  const { t }= useTranslation();
   const { decQty, incQty, qty, onAdd } = useStateContext()
   const [index, setIndex] = useState(0)
   return (
@@ -59,7 +57,7 @@ const PhoneDetails = ({ product, products }) => {
           <p>{details}</p>
           <p className='price'>${price}</p>
           <div className='quantity'>
-            <h3>{t("common:qyntity")}:</h3>
+            <h3>Quantity:</h3>
             <p className='quantity-desc'>
               <span className='minus' onClick={decQty}>
                 <AiOutlineMinus />
@@ -76,17 +74,17 @@ const PhoneDetails = ({ product, products }) => {
               className='add-to-cart'
               onClick={() => onAdd(product, qty)}
             >
-           {t("common:addtocart")}
+              Add to Cart
             </button>
             <button type='button' className='buy-now'>
-            {t("common:buyNow")}
+              <Link href={'/Payment'}>Buy Now</Link>
             </button>
           </div>
         </div>
       </div>
 
       <div className='maylike-products-wrapper'>
-        <h2>{t('common:youMayLike')}</h2> 
+        <h2>You may also like</h2>
         <div className='marquee'>
           <div className='maylike-products-container track'>
             {products.map((item) => (

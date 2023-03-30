@@ -1,12 +1,12 @@
 import React from 'react'
-import Link from 'next/link'
 import { urlFor } from '../lib/client'
-function HeadsetProduct({ comData }) {
-  const { image, name, slug, price } = comData
+import Link from 'next/link'
+function Test({ photoData }) {
+  const { image, name, slug, price } = photoData
 
   return (
     <div>
-      <Link href={`/computer/${slug.current}`}>
+      <Link href={`/photo/${slug.current}`}>
         <div className='product-card w-[300px] h-[350px] items-center m-3 border-4 rounded-lg'>
           <img
             src={urlFor(image && image[0])}
@@ -14,7 +14,7 @@ function HeadsetProduct({ comData }) {
             height={250}
             className='product-image'
           />
-          <p className='product-name'>{name}</p>
+          <p className='product-name truncate  '>{name}</p>
           <p className='product-name'>${price}</p>
         </div>
       </Link>
@@ -22,4 +22,4 @@ function HeadsetProduct({ comData }) {
   )
 }
 
-export default HeadsetProduct
+export default Test

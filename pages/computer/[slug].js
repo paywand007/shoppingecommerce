@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react'
 import {
   AiOutlineMinus,
@@ -6,17 +5,18 @@ import {
   AiFillStar,
   AiOutlineStar,
 } from 'react-icons/ai'
+import useTranslation from 'next-translate/useTranslation'
 
 import { client, urlFor } from '../../lib/client'
 import { Product } from '../../components'
-import { useStateContext } from '../../context/StateContext' 
-import useTranslation from 'next-translate/useTranslation'
+import { useStateContext } from '../../context/StateContext'
+import Link from 'next/link'
 
-const ProductDetails = ({ product, products}) => {
-const { image , name , details , price  } =product
- 
+const PhoneDetails = ({ product, products }) => {
+  const { image, name, details, price } = product
 
-  const { t }= useTranslation();
+
+const { t }= useTranslation();
   const { decQty, incQty, qty, onAdd } = useStateContext()
   const [index, setIndex] = useState(0)
   return (
@@ -105,18 +105,17 @@ export const getStaticPaths = async () => {
     }
   }
   `
+
   const products = await client.fetch(query)
+
   const paths = products.map((product) => ({
     params: {
       slug: product.slug.current,
     },
   }))
 
- 
- 
   return {
     paths,
- 
     fallback: 'blocking',
   }
 }
@@ -128,10 +127,9 @@ export const getStaticProps = async ({ params: { slug } }) => {
   const product = await client.fetch(query)
   const products = await client.fetch(productsQuery)
 
-   
-
   return {
     props: { products, product },
   }
 }
-export default ProductDetails
+
+export default PhoneDetails
