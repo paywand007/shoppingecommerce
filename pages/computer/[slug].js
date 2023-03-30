@@ -8,7 +8,7 @@ import {
 import useTranslation from 'next-translate/useTranslation'
 
 import { client, urlFor } from '../../lib/client'
-import { Product } from '../../components'
+
 import { useStateContext } from '../../context/StateContext'
 import Link from 'next/link'
 
@@ -89,9 +89,21 @@ const { t }= useTranslation();
         <h2>{t('common:youMayLike')}</h2> 
         <div className='marquee'>
           <div className='maylike-products-container track'>
-            {products.map((item) => (
-              <Product key={item._id} product={item} />
-            ))}
+            {products.map((item,i) => (
+   <div key={i} className='w-[350px]'>
+   <Link href={`/computer/${item.slug.current}`}>
+     <div className='product-card  w-[350px] h-[350px] items-center text-clip overflow-hidden m-3 border-4 rounded-lg'>
+       <img
+         src={urlFor(item.image && item.image[0])}
+         width={250}
+         height={250}
+         className='product-image'
+       />
+       <p className='product-name text-center'>{item.name}</p>
+       <p className='product-name text-center'>${item.price}</p>
+     </div>
+   </Link>
+ </div>            ))}
           </div>
         </div>
       </div>

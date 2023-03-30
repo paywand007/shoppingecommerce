@@ -7,7 +7,7 @@ function SecondHandProduct({ sData }) {
   return (
     <div>
       <Link href={`/secondHand/${slug.current}`}>
-        <div className='product-card w-[300px] h-[350px] items-center m-3 border-4 rounded-lg'>
+        <div className='product-card w-[300px] h-[400px] items-center m-3 border-4 rounded-lg'>
           <img
             src={urlFor(image && image[0])}
             width={250}

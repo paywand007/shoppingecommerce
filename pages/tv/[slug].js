@@ -87,9 +87,21 @@ const PhoneDetails = ({ product, products }) => {
         <h2>You may also like</h2>
         <div className='marquee'>
           <div className='maylike-products-container track'>
-            {products.map((item) => (
-              <Product key={item._id} product={item} />
-            ))}
+          {products.map((item,i) => (
+ <div key={i}>
+ <Link href={`/tv/${item.slug.current}`}>
+   <div className='product-card  w-[350px] h-[350px] text-center  indent-8 items-center m-3 border-4 rounded-lg  '>
+     <img
+       src={urlFor(item.image && item.image[0])}
+       width={250}
+       height={250}
+       className='product-image'
+     />
+     <p className='product-name overflow-clip'>{item.name}</p>
+     <p className='product-name '>${item.price}</p>
+   </div>
+ </Link>
+</div>            ))}
           </div>
         </div>
       </div>

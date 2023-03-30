@@ -6,7 +6,7 @@ function Test({ photoData }) {
 
   return (
     <div>
-      <Link href={`/photo/${slug.current}`}>
+      <Link href={`/secondHand/${slug.current}`}>
         <div className='product-card w-[300px] h-[350px] items-center m-3 border-4 rounded-lg'>
           <img
             src={urlFor(image && image[0])}

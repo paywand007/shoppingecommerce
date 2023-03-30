@@ -79,7 +79,7 @@ const PhoneDetails = ({ product, products }) => {
             {t("common:addtocart")}
              </button>
              <button type='button' className='buy-now'>
-             {t("common:buyNow")}
+           <Link href={'/Payment'}>{t("common:buyNow")}</Link>  
              </button>
            </div>
          </div>
@@ -90,9 +90,21 @@ const PhoneDetails = ({ product, products }) => {
          <div className='marquee'>
            <div className='maylike-products-container track'>
 
-             {products.map((item) => (
-               <Product key={item._id} product={item} />
-             ))}
+           {products.map((item,i) => (
+   <div key={i} className='w-[350px]'>
+   <Link href={`/phone/${item.slug.current}`}>
+     <div className='product-card  w-[350px] h-[350px] items-center text-center overflow-hidden m-3 border-4 rounded-lg'>
+       <img
+         src={urlFor(item.image && item.image[0])}
+         width={250}
+         height={250}
+         className='product-image'
+       />
+       <p className='product-name position:static'>{item.name}</p>
+       <p className='product-name'>${item.price}</p>
+     </div>
+   </Link>
+ </div>            ))}
              
            </div>
          </div>

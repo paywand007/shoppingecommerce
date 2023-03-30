@@ -14,7 +14,7 @@ function Product({ product: { image, name, slug, price } }) {
             height={250}
             className='product-image'
           />
-          <p className='product-name position: static'>{name}</p>
+          <p className='product-name position:static'>{name}</p>
           <p className='product-name'>${price}</p>
         </div>
       </Link>

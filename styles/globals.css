@@ -748,6 +748,9 @@
      color: #eee;
      background-color: #22577E;
  }
+ .overflowText{
+    overflow-wrap: break-word;
+ }
  
  @media screen and (max-width:800px) {
      .hero-banner-container {
