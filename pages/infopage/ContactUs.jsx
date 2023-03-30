@@ -7,6 +7,7 @@ import React, { useRef } from 'react'
 import emailjs from '@emailjs/browser'
 
 import * as yup from 'yup'
+import useTranslation from 'next-translate/useTranslation'
 
 function ContactUs() {
   const schema = yup.object().shape({
@@ -15,6 +16,7 @@ function ContactUs() {
     email: yup.string().email().required('Your Email is Required!'),
     message: yup.string().required('Your Message is Required!'),
   })
+  const { t }=useTranslation()
 
   const {
     register,
@@ -52,7 +54,7 @@ function ContactUs() {
     <div className='flex  justify-center my-[100px] gap-3 small:flex-col '>
       <div className=' w-full flex-1  justify-center   small:m-5'>
         <h1 className='text-4xl subpixel-antialiased text-center text-slate-600 font-semibold'>
-          Get In Touch
+        {t('common:getInToch')}
         </h1>
         <form
           className='flex w-full flex-col gap-3 mt-10'
@@ -62,12 +64,12 @@ function ContactUs() {
           <div className='flex flex-col  w-full gap-3'>
             <div className='flex  w-full justify-center  gap-2 small:flex-col medium:flex-col'>
               <label className=' w-1/2 flex flex-col' htmlFor='name'>
-                {' '}
-                <p className='text-left text-lg subpixel-antialiased text-slate-600 font-semibold'></p>
+            
+                <p className='text-left text-lg subpixel-antialiased text-slate-600 font-semibold'>  {t('common:Name')}</p>
                 <input
                   className='px-6 py-2   border-2 border-gray-900'
                   type='text'
-                  placeholder='Name'
+                  placeholder={t('common:Name')} 
                   name='firstName'
                   {...register('firstName')}
                   id='n44ame'
@@ -79,13 +81,13 @@ function ContactUs() {
               <label className='w-1/2 flex flex-col' htmlFor='name'>
                 {' '}
                 <p className='text-left text-lg subpixel-antialiased text-slate-600 font-semibold'>
-                  {' '}
+                {t('common:LastName')} 
                 </p>
                 <input
                   className='px-6 py-2   border-2 border-gray-900'
                   type='text'
                   name='lastName'
-                  placeholder='Last Name'
+                  placeholder={t('common:LastName')} 
                   {...register('lastName')}
                   id='nam3e'
                 />
@@ -96,7 +98,7 @@ function ContactUs() {
             </div>
           </div>
           <div className='w-full small:mx-0 medium:mx-0'>
-            {' '}
+          {t('common:yourEmail')}
             <label htmlFor='email' className='flex justify-center flex-col '>
               <p className='text-left text-lg subpixel-antialiased text-slate-600 font-semibold'></p>
               <input
@@ -116,7 +118,7 @@ function ContactUs() {
             {' '}
             <label htmlFor='email' className='flex justify-center flex-col '>
               <p className='text-left text-lg subpixel-antialiased text-slate-600 font-semibold'>
-                Message :
+             {t('common:message')} :
               </p>
               <textarea
                 className='border-2 border-gray-900'

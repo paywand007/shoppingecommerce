@@ -6,11 +6,12 @@ import { useRouter } from 'next/router'
 
 const AuthDetails = () => {
   const [authUser, setAuthUser] = useState(auth);
-
+  const router = useRouter()
   useEffect(() => {
     const listen = onAuthStateChanged(auth, (user) => {
       if (user) {
         setAuthUser(user);
+
       } else {
         setAuthUser(null);
       }
@@ -25,7 +26,7 @@ const AuthDetails = () => {
     signOut(auth)
       .then(() => {
         console.log("sign out successful");
-       
+       router.push('/SinIn')
       })
       .catch((error) => console.log(error));
   };

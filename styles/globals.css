@@ -1,6 +1,12 @@
+ @import url('https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@500&display=swap');
  @tailwind base;
  @tailwind components;
  @tailwind utilities;
+ @font-face {
+     font-family: 'K24 Kurdish Light Light';
+     src: url('../fonts/K24KurdishLight-Light.ttf');
+ }
+ 
  html,
  body,
  * {
@@ -155,7 +161,7 @@
      position: relative;
      height: 500px;
      line-height: 0.9;
-     width: 100%;
+     width: 90%;
  }
  
  .menu {
@@ -200,9 +206,10 @@
  .hero-banner-image {
      position: absolute;
      top: 0%;
-     right: 20%;
+     right: 10%;
      width: 450px;
      height: 450px;
+     margin-left: 300px;
  }
  
  .desc {
@@ -713,6 +720,33 @@
  
  .product-max-qty {
      margin-top: 10px;
+ }
+ /* PAGINATION STYLE */
+ 
+ .paginationBttns {
+     width: 80%;
+     height: 40px;
+     list-style: none;
+     display: flex;
+     justify-content: center;
+ }
+ 
+ .paginationBttns a {
+     padding: 10px;
+     margin: 8px;
+     border: 1px solid #22577E;
+     color: #22577E;
+     border-radius: 5px;
+ }
+ 
+ .paginationBttns a:hover {
+     color: #eee;
+     background-color: #22577E;
+ }
+ 
+ .paginationActive a {
+     color: #eee;
+     background-color: #22577E;
  }
  
  @media screen and (max-width:800px) {

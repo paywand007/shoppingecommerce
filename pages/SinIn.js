@@ -8,8 +8,11 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useAuthState } from "react-firebase-hooks/auth";
 import { AiFillGoogleCircle } from "react-icons/ai";
+import useTranslation from 'next-translate/useTranslation'
+
 export default function SinIn() {
- 
+  const { t }=useTranslation()
+
    
   const { register, handleSubmit, reset, formState } = useForm()
   const { errors } = formState
@@ -55,14 +58,14 @@ export default function SinIn() {
       {   (<form className='flex flex-col justify-center items-center '   >
       <div className="flex-col gap-5 items-center justify-center  ">
           {/* <label className='font-bold text-xl'>Email</label> */}
-          <h2 className='text-2xl font-bold text-center m-5'>Sin In Account</h2>
+          <h2 className='text-2xl font-bold text-center m-5'>{t("common:sinIn")}</h2>
           <input
           onChange={(e)=>setEmail(e.target.value)}
             name="email"
             type="email"
              
             className={`form-control ${errors.email ? 'is-invalid' : ''} m-5 border-solid border-2 rounded w-[400px]  py-[8px] text-center text-black `}
-          placeholder='Enter Email'
+            placeholder={t('common:yourEmail')}
           />
           <div className="  invalid-feedback text-red-600">{errors.email?.message}</div>
         </div>
@@ -75,29 +78,29 @@ name="password"
             type="password"
      
             className={`form-control ${errors.password ? 'is-invalid' : ''} m-5 border-solid border-2 rounded w-[400px] py-[8px] text-center   text-black`}
-            placeholder=' Enter Password'
+            placeholder={t('common:yourPass')}
           />
           <div className="invalid-feedback text-red-600">{errors.password?.message}</div>
         </div>
 
         <div className="mt-3 ">
           <button type="submit" className="bg-cyan-900 text-white rounded  px-2 py-1 m-2" onClick={signIn}>
-            Log In  
+          {t('common:logIn')} 
           </button>
          
         </div>
-        <div className="mt-3 p-2 rounded bg-orange-700 text-white">
+        <div className="mt-3 p-2 rounded bg-cyan-900 text-white">
            
           <button type='submit' className='flex gap-3' onClick={signInWithGoogle}>
-          Log In with google account  <AiFillGoogleCircle className='w-5'/>
+        {t("common:logInGoogle")}  <AiFillGoogleCircle className='text-2xl'/>
           </button>
         </div>
        
       </form>)}
       <div className='flex justify-center' > 
       
-         <p  className="">
-         Don't Have Account ? <Link href={`/infopage/Auth`}>Sin Up</Link>
+         <p className="hover:text-sky-700 p-2">
+      <Link href={`/infopage/Auth`}>{t('common:donHaveAccount')}</Link>
           </p> </div>
     
       </div>

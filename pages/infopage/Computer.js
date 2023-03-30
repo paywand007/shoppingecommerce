@@ -1,37 +1,72 @@
 import React, { useState } from 'react'
 import { client, urlFor } from '../../lib/client'
-import ComProduct from '../../components/ComProduct'
+import  PhoneProduct  from '../../components/PhoneProduct'
+import ReactPaginate from 'react-paginate';
+function MobileTablet({ mobileData  }) {
+  const [users,setUsers]=useState(mobileData.slice(0,50));
+ const[pageNumber,setPageNumber]=useState(0);
+ const usersPerPage=15;
+ const pagesVisited=pageNumber * usersPerPage;
+ const pageCount=Math.ceil(users.length /usersPerPage)
 
-function Computer({ comData }) {
-  const [searchTerm,setSearchTerm]=useState('') 
-  console.log(comData)
-  return (
-    <div className=' text-center'>
-     <input type='text'
-     onChange={(e)=>{setSearchTerm(e.target.value)}}
-     className=' bg-gray-200 text-center text-black py-2 px-[40px] rounded mt-2' placeholder='Search here '/>
-      <div className='products-container   '>
-         {comData.filter((val)=>{
-          if(searchTerm==''){
-            return val
-          }
-          else if (val.name.toLowerCase().includes(searchTerm.toLocaleLowerCase())){
-            return val
-          }
-         }).map((comData, index) => (
-          <ComProduct key={index} comData={comData} />
-        ))}
+ const [searchTerm,setSearchTerm]=useState('') 
+ console.log(mobileData)
+ const handlePageClick=({selected})=>{
+   setPageNumber(selected);
+
+ }
+ return (
+   <div className=' text-center'>
+    <input type='text'
+    onChange={(e)=>{setSearchTerm(e.target.value)}}
+    className=' bg-gray-200 text-center text-black py-2 px-[40px] rounded mt-2' placeholder='Search here '/>
+     
+     <div className='products-container   '>
+       
+       {users.filter((val)=>{
+            if(searchTerm==''){
+              return val
+            }
+            else if (val.name.toLowerCase().includes(searchTerm.toLocaleLowerCase())){
+              return val
+            }
+           }).slice(pagesVisited,pagesVisited+usersPerPage)
+    .map((mobileData,index)=>{
+      return (
+             <PhoneProduct key={index} mobileData={mobileData} />
+  
+      )
+    })}
+  
+  
+        </div>
+        <div className='flex justify-center mt-5'>  <ReactPaginate
+          breakLabel="..."
+          nextLabel="next >"
+          onPageChange={handlePageClick}
+          pageRangeDisplayed={5}
+          pageCount={pageCount}
+          previousLabel="< previous"
+          renderOnZeroPageCount={null}
+          containerClassName={'paginationBttns '}
+          previousLinkClassName={'previosBttn'}
+          nextLinkClassName={'nextBttn'}
+          disableInitialCallback={'paginationDisabled'}
+          activeClassName={'paginationActive'}
+        /></div>
+      
       </div>
-    </div>
-  )
+    
+ )
 }
 export const getServerSideProps = async () => {
   const mobileQuery = '*[_type == "computer"]'
-  const comData = await client.fetch(mobileQuery)
+  const mobileData = await client.fetch(mobileQuery)
 
   return {
-    props: { comData },
+    props: { mobileData },
   }
 }
 
-export default Computer
+export default MobileTablet
+   

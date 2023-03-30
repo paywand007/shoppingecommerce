@@ -8,6 +8,7 @@ import {
 } from 'react-icons/ai'
 import { TiDeleteOutline } from 'react-icons/ti'
 import toast from 'react-hot-toast'
+import useTranslation from 'next-translate/useTranslation'
 
 import { useStateContext } from '../context/StateContext'
 import { urlFor } from '../lib/client'
@@ -43,6 +44,7 @@ const Cart = () => {
 
     stripe.redirectToCheckout({ sessionId: data.id })
   }
+  const { t }=useTranslation()
 
   return (
     <div className='cart-wrapper' ref={cartRef}>
@@ -53,21 +55,21 @@ const Cart = () => {
           onClick={() => setShowCart(false)}
         >
           <AiOutlineLeft />
-          <span className='heading'>Your Cart</span>
-          <span className='cart-num-items'>({totalQuantities} items)</span>
+          <span className='heading'>{t('common:YourCart')}</span>
+          <span className='cart-num-items'>({totalQuantities}{t('common:items')})</span>
         </button>
 
         {cartItems.length < 1 && (
-          <div className='empty-cart'>
+          <div className='empty-cart flex-col justify-center'>
             <AiOutlineShopping size={150} />
-            <h3>Your shopping bag is empty</h3>
+            <h3>{t('common:YourShoppingBagIsEmpty')}</h3>
             <Link href='/'>
               <button
                 type='button'
                 onClick={() => setShowCart(false)}
                 className='btn'
               >
-                Continue Shopping
+        {t('common:continuShopping')}
               </button>
             </Link>
           </div>

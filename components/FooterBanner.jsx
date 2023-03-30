@@ -1,10 +1,10 @@
 import React from 'react'
 import Link from 'next/link'
+import useTranslation from 'next-translate/useTranslation'
 
 import { urlFor } from '../lib/client'
 
-const FooterBanner = ({
-  footerBanner: {
+const FooterBanner = ({ footerBanner: {
     discount,
     largeText1,
     largeText2,
@@ -17,21 +17,26 @@ const FooterBanner = ({
     image,
   },
 }) => {
+  const { t }=useTranslation()
+
   return (
     <div className='footer-banner-container'>
       <div className='banner-desc'>
         <div className='left'>
-          <p>Discount {discount}</p>
-          <h3>{largeText1}</h3>
-          <h3>{largeText2}</h3>
-          <p>{saleTime}</p>
+          <p>{t('common:discont')} {discount}</p>
+          <h3>{t('common:largText1')}</h3>
+          <h3>{t('common:largText2')}</h3>
+          <p>{t('common:saleTime')}</p>
         </div>
         <div className='right'>
-          <p>{smallText}</p>
-          <h3>{midText}</h3>
-          <p>{desc}</p>
-          <Link href={`/product/${product}`}>
-            <button type='button'>{buttonText}</button>
+          
+          <h3>{t("common:apmweb")}</h3>
+          
+          <p>{t('common:desc1')}</p>
+          <Link
+            href={`/computer/cooler-master-masterliquid-ml360l-argb-v2-white-edition`}
+          >
+            <button type='button text-abc'>{t("common:shopNow")}</button>
           </Link>
         </div>
 

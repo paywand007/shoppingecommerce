@@ -1,7 +1,9 @@
 import {useState} from 'react'
 import Link from 'next/link'
-function DropdownLists( ) {
+import useTranslation from 'next-translate/useTranslation'
 
+function DropdownLists( ) {
+  const { t, lang } = useTranslation()
   const [state, setState] = useState(false)
   const showDropdown = () => {
     setState(true)
@@ -16,7 +18,7 @@ function DropdownLists( ) {
       <div className=' m-3 rounded hover:text-sky-700 active:text-sky-700   pr-2 border-r-4'>
         <Link   href={`/infopage/Phone`}  >
          
-          PHONE | TABLETS
+       {t("common:mobile")}
         </Link> 
         {/* {state ? (
           <ul onMouseEnter={showDropdown} className=' text-center'>
@@ -33,7 +35,7 @@ function DropdownLists( ) {
         onMouseLeave={hideDropdown}
       >
         {' '}
-        <Link href={`/infopage/Computer `}> COMPUTERS | HARDWARES</Link>
+        <Link href={`/infopage/Computer `}>{t("common:computer")}</Link>
         {/* {state ? (
           <ul onMouseEnter={showDropdown} className=' text-center'>
             <li>value 1</li>
@@ -50,7 +52,7 @@ function DropdownLists( ) {
         onMouseLeave={hideDropdown}
       >
         {' '}
-        <Link href={`/infopage/HeadSet `}>HEADSETS | AIRPODS</Link>
+        <Link href={`/infopage/HeadSet `}>{t("common:headset")}</Link>
         {/* {state ? (
           <ul className=' text-center' onMouseEnter={showDropdown}>
             <li>value 1</li>
@@ -65,7 +67,7 @@ function DropdownLists( ) {
         onMouseEnter={showDropdown}
         onMouseLeave={hideDropdown}
       >
-        <Link href={`/infopage/Gaming `}>GAMING</Link>
+        <Link href={`/infopage/Gaming `}>{t("common:gaiming")}</Link>
         {/* {state ? (
           <ul className=' text-center' onMouseEnter={showDropdown}>
             <li>value 1</li>
@@ -80,7 +82,7 @@ function DropdownLists( ) {
         onMouseEnter={showDropdown}
         onMouseLeave={hideDropdown}
       >
-        <Link href={`/infopage/Photograph `}>PHOTOGRAPHY</Link>
+        <Link href={`/infopage/Photograph `}>{t("common:photography")}</Link>
         {/* {state ? (
           <ul className=' text-center  ' onMouseEnter={showDropdown}>
             <li>value 1</li>
@@ -95,7 +97,7 @@ function DropdownLists( ) {
         onMouseEnter={showDropdown}
         onMouseLeave={hideDropdown}
       >
-        <Link href={`/infopage/TvStands `}> TV | STANDS</Link>
+        <Link href={`/infopage/TvStands `}>{t("common:tv")}</Link>
         {/* {state ? (
           <ul className=' text-center' onMouseEnter={showDropdown}>
             <li>value 1</li>
@@ -111,7 +113,10 @@ function DropdownLists( ) {
         onMouseEnter={showDropdown}
         onMouseLeave={hideDropdown}
       >
-        <Link href={`/infopage/SecondHand `}> SECONDE HAND</Link>
+           
+
+      
+        <Link href={`/infopage/SecondHand `}>{t("common:secondhand")}</Link>
         {/* {state ? (
           <ul className=' text-center' onMouseEnter={showDropdown}>
             <li>value 1</li>
@@ -124,9 +129,7 @@ function DropdownLists( ) {
       {/* <div className='m-3   hover:hover:text-sky-700 rounded-lg  pr-2 border-r-4'>
         ABOUT US
       </div> */}
-      <div className='m-3   hover:hover:text-sky-700 rounded-lg'>
-        <Link href={`/infopage/ContactUs`}>CONTACT US</Link>{' '}
-      </div>
+      
     </div>
   )
 }

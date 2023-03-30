@@ -2,16 +2,18 @@ import React from 'react'
 
 import { client } from '../lib/client'
 import { Product, FooterBanner, HeroBanner } from '../components'
+import useTranslation from 'next-translate/useTranslation'
+const Home = ({ products, bannerData  }) => {
+  const { t }=useTranslation()
 
-const Home = ({ products, bannerData  }) => (
-  <div>
+ return ( <div>
     <HeroBanner heroBanner={bannerData.length && bannerData[0]} />
     {console.log(bannerData)}
     {/* {console.log(products)} */}
   
     <div className='products-heading'>
-      <h2>Best Seller Products</h2>
-      <p>speaker There are many variations passages</p>
+      <h2>{t("common:bestsell")}</h2>
+      <p>{t("common:mostrating")}</p>
     </div>
 
     <div className='products-container'>
@@ -23,10 +25,10 @@ const Home = ({ products, bannerData  }) => (
     <FooterBanner footerBanner={bannerData && bannerData[0]} />
 
   </div>
-)
+)}
 
 export const getServerSideProps = async () => {
-  const query = '*[_type == "newtest"]'
+  const query = '*[_type == "product"]'
   const products = await client.fetch(query)
 
   const bannerQuery = '*[_type == "banner"]'

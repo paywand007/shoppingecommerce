@@ -4,15 +4,24 @@ import {
   AiOutlineShoppingCart,
   AiOutlineUser,
   AiOutlineSearch,
+  AiFillContacts
 } from 'react-icons/ai'
+import { GrContactInfo } from "react-icons/gr";
+import {BiEnvelopeOpen } from "react-icons/bi";
+import {RiTeamLine,RiMailSendLine} from 'react-icons/ri'
+import {BsChatLeftText} from 'react-icons/bs'
+
 import {Cart} from './'
 import { HiMenu } from 'react-icons/hi'
 import { useStateContext } from '../context/StateContext' 
+import { useRouter } from 'next/router'
+import useTranslation from 'next-translate/useTranslation'
 
- 
+import i18nConfig from '../i18n.json'
 
+const { locales } = i18nConfig
 function Navbar() {
-  
+  const { t, lang } = useTranslation()
   const { showCart, setShowCart, totalQuantities } = useStateContext()
    // code for showing menu
 
@@ -22,10 +31,11 @@ function Navbar() {
     console.log('clicke me')
 
   }
+  
 
   return (
-    <div className='flex  m-[20px]  small:w-[300p] small:m-[5px] small:p-0   navbar-container '>
-      <h2 className='logo text-3xl text-center   small:ml-0 small:text-3xl '>
+    <div className='flex justify-center  m-[20px] small:flex-col small:w-[300p] small:m-[5px] small:p-0   navbar-container '>
+      <h2 className='logo  text-3xl text-center ml-[150px] small:flex justify-center   small:ml-0 small:text-3xl '>
         <Link href='/'>APM ELECTRONICS</Link>
       </h2>
       {/* <div
@@ -48,11 +58,25 @@ function Navbar() {
         </button>
       </div> */}
 
-      <div className='flex gap-1'>
-        {' '}
-      <button type='button' className='cart-icon'>
-      <Link   href={`/SinIn`}><AiOutlineUser/></Link> 
+      <div className='flex justify-center gap-4 mr-[150px] '>
+      {locales.map((lng) => {
+    if (lng === lang) return null
+
+    return (
+      <button className='text-2xl'>
+      <Link href="/" locale={lng} key={lng}>
+        {t(`${lng}`)}
+      </Link>
+      </button>
+    )
+  })}
+    <button type='button' className='cart-icon text-xs'>
+      <Link   href={`/infopage/ContactUs`}><RiMailSendLine/></Link> 
         </button> 
+        <button type='button' className='cart-icon bg-white'>
+      <Link   href={`/infopage/AboutUs`}><RiTeamLine/></Link> 
+        </button> 
+      
         <button type='button' className='cart-icon'>
           <svg
             xmlns='http://www.w3.org/2000/svg'
@@ -76,6 +100,9 @@ function Navbar() {
         >
           <span className='cart-item-qty '> {totalQuantities}</span>
           <AiOutlineShoppingCart />
+        </button>
+        <button type='button' className='cart-icon'>
+      <Link   href={`/SinIn`}><AiOutlineUser/></Link> 
         </button>
         {showCart && <Cart />}
         <button

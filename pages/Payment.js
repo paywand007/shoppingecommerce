@@ -2,11 +2,16 @@ import { useForm } from 'react-hook-form'
 
 import { yupResolver } from '@hookform/resolvers/yup'
 
-import React, { useRef } from 'react'
+import React, { useRef,useState } from 'react'
 
 import emailjs from '@emailjs/browser'
 
 import * as yup from 'yup'
+import {auth} from'../pages/firbase/firebase'
+import useTranslation from 'next-translate/useTranslation'
+
+
+
 
 function Payment() {
   const schema = yup.object().shape({
@@ -48,14 +53,17 @@ function Payment() {
       )
     form.current.reset()
   }
-
+  const { t }=useTranslation()
+ // const [authUser, setAuthUser] = useState(auth);
+ const [authUser, setAuthUser] = useState(auth);
+console.log(authUser)
   return (
-    <div className='flex  justify-center my-[100px] gap-3 small:flex-col '>
+  <div className='flex  justify-center my-[100px] gap-3 small:flex-col '>
       <div className=' w-full flex-1  justify-center   small:m-5'>
         <h1 className='text-4xl subpixel-antialiased text-center text-slate-600 font-semibold'>
-          Fill this to pay
+       {t('common:FillThisToPay')}
         </h1>
-        <form
+      { authUser && <form
           className='flex w-full flex-col gap-3 mt-10'
           ref={form}
           onSubmit={handleSubmit(sendEmail)}
@@ -64,12 +72,12 @@ function Payment() {
             <div className='flex  w-full justify-center  gap-2 small:flex-col medium:flex-col'>
               <label className=' w-1/2 flex flex-col' htmlFor='name'>
                 {' '}
-                <p className='text-left text-lg subpixel-antialiased text-slate-600 font-semibold'></p>
+                <p className='text-left text-lg subpixel-antialiased text-slate-600 font-semibold'>       {t('common:Name')} </p>
                 <input
                   className='px-6 py-2   border-2 border-gray-900'
                   type='text'
-                  placeholder='Name'
-                  name='firstName'
+                  placeholder= {t('common:Name')} 
+                  name={t('common:Name')} 
                   {...register('firstName')}
                   id='n44ame'
                 />
@@ -80,13 +88,13 @@ function Payment() {
               <label className='w-1/2 flex flex-col' htmlFor='name'>
                 {' '}
                 <p className='text-left text-lg subpixel-antialiased text-slate-600 font-semibold'>
-                  {' '}
+                {t('common:LastName')} 
                 </p>
                 <input
                   className='px-6 py-2   border-2 border-gray-900'
                   type='text'
                   name='lastName'
-                  placeholder='Last Name'
+                  placeholder= {t('common:LastName')} 
                   {...register('lastName')}
                   id='nam3e'
                 />
@@ -99,7 +107,7 @@ function Payment() {
           <div className='w-full small:mx-0 medium:mx-0'>
             {' '}
             <label htmlFor='email' className='flex justify-center flex-col '>
-              <p className='text-left text-lg subpixel-antialiased text-slate-600 font-semibold'></p>
+              <p className='text-left text-lg subpixel-antialiased text-slate-600 font-semibold'>{t('common:yourEmail')}</p>
               <input
                 className='px-3 py-2   border-2 border-gray-900'
                 name='email'
@@ -117,7 +125,7 @@ function Payment() {
             {' '}
             <label htmlFor='email' className='flex justify-center flex-col '>
               <p className='text-left text-lg subpixel-antialiased text-slate-600 font-semibold'>
-                Phone:
+      {t('common:phone')}:
               </p>
               <input
                 className='px-3 py-2   border-2 border-gray-900'
@@ -137,7 +145,7 @@ function Payment() {
             {' '}
             <label htmlFor='email' className='flex justify-center flex-col '>
               <p className='text-left text-lg subpixel-antialiased text-slate-600 font-semibold'>
-               location :
+            {t('common:location')} :
               </p>
               <input
                 className='px-3 py-2   border-2 border-gray-900'
@@ -159,10 +167,12 @@ function Payment() {
               type='submit'
               className='bg-sky-900  text-white rounded-md px-5 py-3'
             >
-              Send
+             {t('common:send')}
             </button>
           </div>
-        </form>
+        </form>  
+        
+        }
       </div>
     </div>
   )

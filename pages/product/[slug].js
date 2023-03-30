@@ -9,11 +9,15 @@ import {
 import { client, urlFor } from '../../lib/client'
 import { Product } from '../../components'
 import { useStateContext } from '../../context/StateContext' 
-import Link from 'next/link'
+import useTranslation from 'next-translate/useTranslation'
 
-const ProductDetails = ({ product, products}) => {
-  const { image, name, details, price,count } = product
+const ProductDetails = ({ product : { image , name , details , price  } , products}) => {
 
+  
+
+ 
+
+  const { t }= useTranslation();
   const { decQty, incQty, qty, onAdd } = useStateContext()
   const [index, setIndex] = useState(0)
   return (
@@ -50,13 +54,13 @@ const ProductDetails = ({ product, products}) => {
               <AiFillStar />
               <AiOutlineStar />
             </div>
-            <p>{count}</p>
+            <p>(20)</p>
           </div>
           <h4>Details: </h4>
           <p>{details}</p>
           <p className='price'>${price}</p>
           <div className='quantity'>
-            <h3>Quantity:</h3>
+            <h3>{t("common:qyntity")}:</h3>
             <p className='quantity-desc'>
               <span className='minus' onClick={decQty}>
                 <AiOutlineMinus />
@@ -73,21 +77,21 @@ const ProductDetails = ({ product, products}) => {
               className='add-to-cart'
               onClick={() => onAdd(product, qty)}
             >
-              Add to Cart
+           {t("common:addtocart")}
             </button>
             <button type='button' className='buy-now'>
-              <Link href={'/Payment'}>Buy Now</Link>
+            {t("common:buyNow")}
             </button>
           </div>
         </div>
       </div>
 
       <div className='maylike-products-wrapper'>
-        <h2>You may also like</h2>
+        <h2>{t('common:youMayLike')}</h2> 
         <div className='marquee'>
           <div className='maylike-products-container track'>
-            {products.map((item) => (
-              <Product key={item._id} product={item} />
+            {products.map((item,i) => (
+              <Product key={i} product={item} />
             ))}
           </div>
         </div>
@@ -95,9 +99,8 @@ const ProductDetails = ({ product, products}) => {
     </div>
   )
 }
-
 export const getStaticPaths = async () => {
-  const query = `*[_type == "newtest"] {
+  const query = `*[_type == "akam"] {
     slug {
       current
     }
@@ -120,8 +123,8 @@ export const getStaticPaths = async () => {
 }
 
 export const getStaticProps = async ({ params: { slug } }) => {
-  const query = `*[_type == "newtest" && slug.current == '${slug}'][0]`
-  const productsQuery = '*[_type == "newtest"]'
+  const query = `*[_type == "product" && slug.current == '${slug}'][0]`
+  const productsQuery = '*[_type == "product"]'
 
   const product = await client.fetch(query)
   const products = await client.fetch(productsQuery)
@@ -132,6 +135,4 @@ export const getStaticProps = async ({ params: { slug } }) => {
     props: { products, product },
   }
 }
-
-
 export default ProductDetails

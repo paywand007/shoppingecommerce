@@ -5,6 +5,7 @@ import {
   AiFillStar,
   AiOutlineStar,
 } from 'react-icons/ai'
+import useTranslation from 'next-translate/useTranslation'
 
 import { client, urlFor } from '../../lib/client'
 import { Product } from '../../components'
@@ -14,6 +15,8 @@ import Link from 'next/link'
 const PhoneDetails = ({ product, products }) => {
   const { image, name, details, price } = product
 
+
+const { t }= useTranslation();
   const { decQty, incQty, qty, onAdd } = useStateContext()
   const [index, setIndex] = useState(0)
   return (
@@ -56,7 +59,7 @@ const PhoneDetails = ({ product, products }) => {
           <p>{details}</p>
           <p className='price'>${price}</p>
           <div className='quantity'>
-            <h3>Quantity:</h3>
+            <h3>{t("common:qyntity")}:</h3>
             <p className='quantity-desc'>
               <span className='minus' onClick={decQty}>
                 <AiOutlineMinus />
@@ -73,17 +76,17 @@ const PhoneDetails = ({ product, products }) => {
               className='add-to-cart'
               onClick={() => onAdd(product, qty)}
             >
-              Add to Cart
+           {t("common:addtocart")}
             </button>
             <button type='button' className='buy-now'>
-              <Link href={'/Payment'}>Buy Now</Link>
+            {t("common:buyNow")}
             </button>
           </div>
         </div>
       </div>
 
       <div className='maylike-products-wrapper'>
-        <h2>You may also like</h2>
+        <h2>{t('common:youMayLike')}</h2> 
         <div className='marquee'>
           <div className='maylike-products-container track'>
             {products.map((item) => (
