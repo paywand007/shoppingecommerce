@@ -13,7 +13,7 @@ import { useStateContext } from '../../context/StateContext'
 import Link from 'next/link'
 
 const PhoneDetails = ({ product, products }) => {
-  const { image, name, details, price } = product
+  const { image, name, details, price,count } = product
 
 
 const { t }= useTranslation();
@@ -70,8 +70,13 @@ const { t }= useTranslation();
               </span>
             </p>
           </div>
-          <div className='buttons'>
-            <button
+          { count === 0 ? (
+  <p className='text-red-600 text-2xl font-bold'>Out of stock</p>
+) : (
+ 
+      <div className='buttons'>
+          
+           <button
               type='button'
               className='add-to-cart'
               onClick={() => onAdd(product, qty)}
@@ -81,7 +86,7 @@ const { t }= useTranslation();
             <button type='button' className='buy-now'>
             {t("common:buyNow")}
             </button>
-          </div>
+          </div>  ) }
         </div>
       </div>
 

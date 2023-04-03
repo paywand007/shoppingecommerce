@@ -5,7 +5,7 @@ import Footer from './Footer'
 import Menu from './DropdwonLists/Menu'
 function Layout({children}) {
   return (
-    <div className='layout'>
+    <div className='layout  '>
 
       <Head>
         <title>Electronic Devices</title>

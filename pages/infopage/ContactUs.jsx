@@ -5,11 +5,15 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import React, { useRef } from 'react'
 
 import emailjs from '@emailjs/browser'
+import { auth } from '../firbase/firebase';
+import { useAuthState } from "react-firebase-hooks/auth";
 
 import * as yup from 'yup'
 import useTranslation from 'next-translate/useTranslation'
-
+import Link from 'next/link'
 function ContactUs() {
+  const [user, loading] = useAuthState(auth);
+
   const schema = yup.object().shape({
     firstName: yup.string().required('Your Full Name is Required!'),
     lastName: yup.string().required('Your Last Name is Required!'),
@@ -37,7 +41,7 @@ function ContactUs() {
         'service_21dgncx',
         'template_rvkuj9b',
         form.current,
-        'THcaIEhH6x_Hp_92h'
+        '1AkGknP7nUAVl1BD6'
       )
       .then(
         (result) => {
@@ -52,7 +56,12 @@ function ContactUs() {
 
   return (
     <div className='flex  justify-center my-[100px] gap-3 small:flex-col '>
+     
       <div className=' w-full flex-1  justify-center   small:m-5'>
+  
+  {user &&  <p className='subpixel-antialiased text-center text-cyan-900 font-semibold m-5 hover:text-fuchsia-700'> 
+     <Link href={'/SellingMessege'}>{t("common:sellProduct")}</Link> </p> }
+  
         <h1 className='text-4xl subpixel-antialiased text-center text-slate-600 font-semibold'>
         {t('common:getInToch')}
         </h1>
@@ -133,7 +142,7 @@ function ContactUs() {
               </p>
             </label>
           </div>
-
+          <input type="file" name="image" accept="image/*" placeholder='chose images' />
           <div className='flex justify-start'>
             <button
               type='submit'
@@ -146,7 +155,9 @@ function ContactUs() {
       </div>
 
       <div className='flex-1   m-5 '>
-        <h1 className='text-4xl text-center subpixel-antialiased text-slate-600 font-semibold mb-10'>
+      <p className='subpixel-antialiased text-center text-cyan-900 font-semibold m-5 hover:text-fuchsia-700'>  </p>
+
+        <h1 className='text-4xl text-center subpixel-antialiased text-slate-600 font-semibold   mb-10'>
           Contact Us
         </h1>
 

@@ -12,6 +12,7 @@ import paywand from './paywand'
 import akam from './akam'
 import secondhand from './secondhand'
 import newtest from './newtest'
+import offers from './offers'
 export const schemaTypes = [
     product,
     banner,
@@ -26,5 +27,6 @@ export const schemaTypes = [
     akam,
     computersHardwares,
     secondhand,
-    newtest
+    newtest,
+    offers
 ]

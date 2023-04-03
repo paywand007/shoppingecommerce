@@ -17,7 +17,7 @@
     "buyNow": "Buy Now",
     "qyntity": "Quantity",
     "youMayLike": "You May Also Like",
-    "sinIn": "Sin In Account",
+    "sinIn": "Login page",
     "yourEmail": " Enter Your Email",
     "yourPass": " Enter Your Password",
     "logIn": "Log In",
@@ -40,8 +40,16 @@
     "location": "Location",
     "send": "Send",
     "message": "Message",
-    "getInToch": "Get In Touch"
-
+    "getInToch": "Get In Touch",
+    "aboutUsP":"Welcome to our electronic eCommerce website! We are dedicated to providing our customers with a wide variety of high-quality electronic products at competitive prices. Our online platform offers an easy and convenient shopping experience, allowing you to browse and purchase products from the comfort of your own home. With a focus on customer satisfaction, we strive to offer excellent customer service and fast, reliable shipping. Our inventory includes everything from the latest smartphones and laptops to smart home devices and gaming consoles. We are committed to staying up-to-date with the latest trends and innovations in the electronic industry, ensuring that our customers have access to the newest and most innovative products on the market. Thank you for choosing our electronic eCommerce website, we look forward to serving you!",
+    "aboutUs":"About Us",
+    "ourTeam":"Our Staff",
+    "sellProduct":"If You have a product you want to sell please click here ",
+    "AtoZ":"A-Z",
+    "highPrice":"High Price",
+    "lowPrice":"Low Price",
+    "lasted":"Lasted",
+    "serach":"Search here"
 
 
 

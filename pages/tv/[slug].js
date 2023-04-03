@@ -10,11 +10,10 @@ import { client, urlFor } from '../../lib/client'
 import { Product } from '../../components'
 import { useStateContext } from '../../context/StateContext'
 import Link from 'next/link'
-
-
+import useTranslation from 'next-translate/useTranslation'
 const PhoneDetails = ({ product, products }) => {
   const { image, name, details, price } = product
-
+const { t }=useTranslation()
   const { decQty, incQty, qty, onAdd } = useStateContext()
   const [index, setIndex] = useState(0)
   return (
@@ -74,10 +73,10 @@ const PhoneDetails = ({ product, products }) => {
               className='add-to-cart'
               onClick={() => onAdd(product, qty)}
             >
-              Add to Cart
+           {t("common:addtocart")}
             </button>
             <button type='button' className='buy-now'>
-              <Link href={'/Payment'}>Buy Now</Link>
+            {t("common:buyNow")}
             </button>
           </div>
         </div>

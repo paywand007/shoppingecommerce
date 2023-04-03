@@ -1,6 +1,6 @@
 export default {
-    name: 'akam',
-    title: 'Akam',
+    name: 'offers',
+    title: 'offers',
     type: 'document',
     fields: [{
             name: 'image',

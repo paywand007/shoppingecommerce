@@ -16,6 +16,9 @@
      box-sizing: border-box;
  }
  
+ .filterBtn :active{
+background-color: #396EB0;
+ }
  ::-webkit-scrollbar {
      width: 0px;
  }

@@ -5,14 +5,20 @@ import {
   AiFillStar,
   AiOutlineStar,
 } from 'react-icons/ai'
+import useTranslation from 'next-translate/useTranslation'
+import { useAuthState } from "react-firebase-hooks/auth";
 
 import { client, urlFor } from '../../lib/client'
 import { Product } from '../../components'
 import { useStateContext } from '../../context/StateContext' 
 import Link from 'next/link'
+import { auth } from '../firbase/firebase';
+
 
 const ProductDetails = ({ product, products}) => {
   const { image, name, details, price,count } = product
+  const { t }=useTranslation()
+  const [user, loading] = useAuthState(auth);
 
   const { decQty, incQty, qty, onAdd } = useStateContext()
   const [index, setIndex] = useState(0)
@@ -55,8 +61,8 @@ const ProductDetails = ({ product, products}) => {
           <h4>Details: </h4>
           <p>{details}</p>
           <p className='price'>${price}</p>
-          <div className='quantity'>
-            <h3>Quantity:</h3>
+           <div className='quantity'>
+            <h3>{t("common:qyntity")}:</h3>
             <p className='quantity-desc'>
               <span className='minus' onClick={decQty}>
                 <AiOutlineMinus />
@@ -67,18 +73,24 @@ const ProductDetails = ({ product, products}) => {
               </span>
             </p>
           </div>
-          <div className='buttons'>
-            <button
+          { count === 0 ? (
+  <p className='text-red-600 text-2xl font-bold'>Out of stock</p>
+) : (
+ 
+      <div className='buttons'>
+          
+           <button
               type='button'
               className='add-to-cart'
               onClick={() => onAdd(product, qty)}
             >
-              Add to Cart
+           {t("common:addtocart")}
             </button>
             <button type='button' className='buy-now'>
-              <Link href={'/Payment'}>Buy Now</Link>
+           <Link href={'/Payment'}>{t("common:buyNow")}</Link> 
             </button>
-          </div>
+          </div>  ) }
+          
         </div>
       </div>
 
@@ -128,7 +140,6 @@ export const getStaticProps = async ({ params: { slug } }) => {
 
    
 
-  console.log("Joseph productdetail : ", products, ' ' , product)
   return {
     props: { products, product },
   }
