@@ -6,10 +6,9 @@ import useTranslation from 'next-translate/useTranslation'
 const Home = ({ products, bannerData  }) => {
   const { t }=useTranslation()
 
- return ( <div>
+ return ( <div className='background'>
     <HeroBanner heroBanner={bannerData.length && bannerData[0]} />
-    {console.log(bannerData)}
-    {/* {console.log(products)} */}
+    
   
     <div className='products-heading'>
       <h2>{t("common:bestsell")}</h2>
