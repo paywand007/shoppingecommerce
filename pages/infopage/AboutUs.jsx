@@ -2,7 +2,7 @@ import React from 'react'
 import { client, urlFor } from '../../lib/client'
 import useTranslation from 'next-translate/useTranslation'
 
-export default function AboutUs({comData}) {
+export default function AboutUs({stafData}) {
   const { t }=useTranslation()
   return (
 <div className='     m-5 '>
@@ -14,7 +14,7 @@ export default function AboutUs({comData}) {
   </div>
   <h1 className=' text-center m-7 text-4xl  font-medium text-cyan-900 '>{t('common:ourTeam')}</h1>
   <div className='flex justify-center m-8'> 
-  {comData.map((item,index)=>{
+  {stafData.map((item,index)=>{
 return <div key={index} className=' flex justify-center text-center w-[400px]  rounded-sm'>
   <div>  <img   
   className='w-full rounded-full h-[350px] mx-auto object-contain'
@@ -33,10 +33,10 @@ return <div key={index} className=' flex justify-center text-center w-[400px]  r
 }
 export const getServerSideProps = async () => {
   const mobileQuery = '*[_type == "newtest"]'
-  const comData = await client.fetch(mobileQuery)
+  const stafData = await client.fetch(mobileQuery)
 
   return {
-    props: { comData },
+    props: { stafData },
   }
 }
 

@@ -77,7 +77,7 @@ const PhoneDetails = ({ product, products }) => {
            {t("common:addtocart")}
             </button>
             <button type='button' className='buy-now'>
-            {t("common:buyNow")}
+           <Link href={'/Payment'}>{t("common:buyNow")}</Link> 
             </button>
           </div>
         </div>

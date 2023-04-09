@@ -2,7 +2,7 @@ import React from 'react'
 import Link from 'next/link'
 import { urlFor } from '../lib/client'
 function OfferProduct({ offerData }) {
-  const { image, name, slug, price } = offerData
+  const { image, name, slug, price,priceNew } = offerData
 
   return (
     <div>
@@ -15,7 +15,9 @@ function OfferProduct({ offerData }) {
             className='product-image'
           />
           <p className='product-name'>{name}</p>
-          <p className='product-name'>${price}</p>
+          <p className='product-name text-red-700 line-through'>Current ${price}</p>
+          <p className='product-name text-green-800 '>New Price ${priceNew}</p>
+
         </div>
       </Link>
     </div>

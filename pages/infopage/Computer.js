@@ -11,7 +11,7 @@ function Computer({ comData }) {
   const pageCount=Math.ceil(users.length /usersPerPage)
 const {t}=useTranslation()
   const [searchTerm,setSearchTerm]=useState('') 
-  console.log(comData)
+ 
   const handlePageClick=({selected})=>{
     setPageNumber(selected);
 

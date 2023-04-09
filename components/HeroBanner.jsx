@@ -9,10 +9,10 @@ function HeroBanner({ heroBanner }) {
   const { t }=useTranslation()
  
   return (
-    <div className='hero-banner-container  ml-[70px] small:flex-col small:m-0'>
+    <div className='hero-banner-container  ml-[70px] small:flex-col small:m-0 '>
       <div > 
       
-        <h3 className='font-sans ' >{t("common:apmweb")}</h3>
+        <h3 className='font-sans text-cyan-900 font-medium ' >{t("common:apmweb")}</h3>
         <p className='beats-solo'></p>
         
         <h1 className='text-black'>  </h1>
@@ -21,11 +21,11 @@ function HeroBanner({ heroBanner }) {
           alt='headphones'
           className='hero-banner-image'
         />
-        <div>
-          <Link
+        <div className=''>
+          <Link 
             href={`/computer/cooler-master-masterliquid-ml360l-argb-v2-white-edition`}
           >
-            <button type='button text-abc'>{t("common:shopNow")}</button>
+            <button  className='hover:scale-3'    >{t("common:shopNow")}</button>
           </Link>
           <div className='desc'>
             <h5 >{t("common:desc")}</h5>

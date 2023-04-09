@@ -7,7 +7,7 @@ import React, { useRef } from 'react'
 import emailjs from '@emailjs/browser'
 import { auth } from '../firbase/firebase';
 import { useAuthState } from "react-firebase-hooks/auth";
-
+import { useStateContext } from '../../context/StateContext';
 import * as yup from 'yup'
 import useTranslation from 'next-translate/useTranslation'
 import Link from 'next/link'
@@ -21,7 +21,14 @@ function ContactUs() {
     message: yup.string().required('Your Message is Required!'),
   })
   const { t }=useTranslation()
-
+  const {
+    totalPrice,
+    totalQuantities,
+    cartItems,
+    setShowCart,
+    toggleCartItemQuanitity,
+    onRemove,
+  } = useStateContext()
   const {
     register,
     handleSubmit,
@@ -41,7 +48,7 @@ function ContactUs() {
         'service_21dgncx',
         'template_rvkuj9b',
         form.current,
-        '1AkGknP7nUAVl1BD6'
+        'YtasHwtJdxT7HfPFg'
       )
       .then(
         (result) => {
@@ -135,6 +142,7 @@ function ContactUs() {
                 name='message'
                 cols='30'
                 rows='3'
+
               />
 
               <p className='text-sm text-red-500 text-left'>
@@ -142,7 +150,6 @@ function ContactUs() {
               </p>
             </label>
           </div>
-          <input type="file" name="image" accept="image/*" placeholder='chose images' />
           <div className='flex justify-start'>
             <button
               type='submit'

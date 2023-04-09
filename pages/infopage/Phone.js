@@ -8,7 +8,7 @@ function MobileTablet({ mobileData  }) {
   const {t}=useTranslation()
 const [users,setUsers]=useState(mobileData.slice(0,50));
 const[pageNumber,setPageNumber]=useState(0);
-const usersPerPage=16;
+const usersPerPage=8;
 const pagesVisited=pageNumber * usersPerPage;
 const pageCount=Math.ceil(users.length /usersPerPage)
 

@@ -25,25 +25,7 @@ const Cart = () => {
     onRemove,
   } = useStateContext()
 
-  const handleCheckout = async () => {
-    const stripe = await getStripe()
-
-    const response = await fetch('/api/stripe', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(cartItems),
-    })
-
-    if (response.statusCode === 500) return
-
-    const data = await response.json()
-
-    toast.loading('Redirecting...')
-
-    stripe.redirectToCheckout({ sessionId: data.id })
-  }
+ 
   const { t }=useTranslation()
 
   return (
@@ -85,8 +67,8 @@ const Cart = () => {
                 />
                 <div className='item-desc'>
                   <div className='flex top'>
-                    <h5>{item.name}</h5>
-                    <h4>${item.price}</h4>
+                    <h5>{item?.name}</h5>
+                    <h4>${item?.price}</h4>
                   </div>
                   <div className='flex bottom'>
                     <div>
@@ -131,7 +113,7 @@ const Cart = () => {
               <h3>${totalPrice}</h3>
             </div>
             <div className='btn-container'>
-              <button type='button' className='btn' onClick={handleCheckout}>
+              <button type='button' className='btn'  >
                 <Link href={'/Payment'}>Payment</Link>
               </button>
             </div>
